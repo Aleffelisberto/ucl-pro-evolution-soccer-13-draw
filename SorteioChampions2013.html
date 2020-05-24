@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Champions League 2012/2013</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="shortcut icon" href="img/champions.ico"/>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+        <style type="text/css">
+            body, html {
+                height: 100%;
+            }
+
+            .bg { 
+                /* The image used */
+                background-image: url('img/champions-bg.png');
+            
+                /* Full height */
+                height: 100%; 
+            
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: repeat;
+                background-size: cover;
+            }
+        </style>
+
+    </head>
+
+    <body class="bg">
+        <audio control autoplay loop><source src="music/champions.mp3" type="audio/mpeg"></audio>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="d-block justify-content-center">
+                        <h1 class="display-4 font-weight-normal text-white">Sorteio UEFA Champions League 12/13</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoA">
+                        <h4 class="text-white">Group A</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoB">
+                        <h4 class="text-white">Group B</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoC">
+                        <h4 class="text-white">Group C</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoD">
+                        <h4 class="text-white">Group D</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoE">
+                        <h4 class="text-white">Group E</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoF">
+                        <h4 class="text-white">Group F</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoG">
+                        <h4 class="text-white">Group G</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-block justify-content-center" id="grupoH">
+                        <h4 class="text-white">Group H</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //pote1: barcelona, real madrid, bayern de munique, ajax, porto, chelsea, manchester united, psg
+            //pote2: 'Atletico de Madrid', 'Juventus', 'Napoli', 'Manchester City', 'Benfica', 'Lyon', 'Valencia', 'Shaktar Donetsk'
+            //pote3: 'Milan', 'Internazionali', 'Panathinaikos', 'Arsenal', 'Lazio', 'Dinamo Kyiv', 'Shalke 04', 'Lille'
+            //pote4: 'Sporting', 'Atalanta', 'Málaga', 'Fenerbache', 'Olympiakos', 'Olympique Marsellie', 'Liverpool', 'Spartak Moscow'
+
+            let potes = []
+            let pote1 = ['Barcelona', 'Real Madrid', 'Bayern de Munique', 'Ajax', 'Porto', 'Chelsea', 'Manchester United', 'PSG']
+            let pote2 = ['Atletico de Madrid', 'Juventus', 'Napoli', 'Manchester City', 'Benfica', 'Lyon', 'Valencia', 'Shaktar Donetsk']
+            let pote3 = ['Milan', 'Internazionali', 'Panathinaikos', 'Arsenal', 'Lazio', 'Dinamo Kyiv', 'Shalke 04', 'Lille']
+            let pote4 = ['Sporting', 'Atalanta', 'Málaga', 'Fenerbache', 'Olympiakos', 'Olympique Marsellie', 'Liverpool', 'Spartak Moscow']
+            potes.push(pote1); potes.push(pote2); potes.push(pote3); potes.push(pote4)
+
+            let grupos = []
+            let grupoA = []; grupos.push(grupoA)
+            let grupoB = []; grupos.push(grupoB)
+            let grupoC = []; grupos.push(grupoC)
+            let grupoD = []; grupos.push(grupoD)
+            let grupoE = []; grupos.push(grupoE)
+            let grupoF = []; grupos.push(grupoF)
+            let grupoG = []; grupos.push(grupoG)
+            let grupoH = []; grupos.push(grupoH)
+
+                function shuffle(pote) {
+                    var idxAtual = pote.length, tmp, idxAleatório;
+
+                        // Enquanto ainda há elementos para embaralhar
+                        while (0 !== idxAtual) {
+                            // escolhendo um elemento remanescente
+                            idxAleatório = Math.floor(Math.random() * idxAtual);
+                            idxAtual -= 1;
+
+                            // e trocando-o com o elemento atual
+                            tmp = pote[idxAtual];
+                            pote[idxAtual] = pote[idxAleatório];
+                            pote[idxAleatório] = tmp;
+                        }
+
+                    return pote;
+                }
+
+
+                for (let i = 0; i < 4; i++) {
+                    potes[i] = shuffle(potes[i])
+                    for (let j = 0; j < 8; j++) {
+                        grupos[j].push(potes[i][j])
+                    }
+                }
+
+                for (i in grupos) {
+                    console.log(grupos[i])
+                }
+
+            function montaGruposNaTela() {
+                groupletters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+
+                for (i in grupos) {
+                    for (j in grupos[i]) {
+
+                        //criando um elemento p para os times
+                        let time = document.createElement("p")
+                        time.className = 'text-white'
+                        let nome_time = document.createTextNode(grupos[i][j])
+                        time.appendChild(nome_time)
+                        document.getElementById("grupo" + groupletters[i]).appendChild(time)
+                    }
+                } 
+            }
+
+            montaGruposNaTela()
+
+
+        </script>
+    </body>
+</html>
